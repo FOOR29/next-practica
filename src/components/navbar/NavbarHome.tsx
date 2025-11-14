@@ -12,7 +12,7 @@ const NavbarHome = () => {
         { name: "About", href: "/about" },
     ];
     return (
-        <nav className="flex space-x-6">
+        <nav className="flex gap-4">
             {navLinks.map((link) => {
                 const isActive =
                     pathname === link.href ||
@@ -21,7 +21,7 @@ const NavbarHome = () => {
                     <Link
                         href={link.href}
                         key={link.name}
-                        className={`${isActive ? "text-white underline" : "text-gray-300 hover:text-white"}`}
+                        className={`${isActive ? "text-white bg-blue-900 py-0.5 px-2.5 rounded-2xl" : "text-gray-300 hover:text-white"}`}
                         replace>
                         {link.name}
                     </Link>
