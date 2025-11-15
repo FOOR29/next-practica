@@ -2,13 +2,15 @@ import { Metadata } from "next"
 
 export const metadata: Metadata = {
     title: {
-        absolute: "Services||"
+        absolute: "Services"
     }
 }
 
 const ServicesPage = () => {
     return (
-        <div>ServicesPage</div>
+        <div>
+            <h1 className="font-medium">Supreme</h1>
+        </div>
     )
 }
 
