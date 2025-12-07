@@ -1,31 +1,42 @@
 import NextAuth from "next-auth"
-import { PrismaAdapter } from "@auth/prisma-adapter"  // esto se deb einstalar como: 'npm install @auth/prisma-adapter' ya que este es el puente entre nextaut y prisma
+import { PrismaAdapter } from "@auth/prisma-adapter"  // esto se debe instalar como: 'npm install @auth/prisma-adapter'
 import authConfig from "@/auth.config"
 import { db } from "./lib/db";
 
-
 export const { handlers, signIn, signOut, auth } = NextAuth({
-    // le pasamos el adaptador de prisma
     adapter: PrismaAdapter(db),
-    ...authConfig, // se destructura el authconfig
-    session: { strategy: "jwt" }, // esto significa que cada ves que se loguee un cliente  correctamente 
-    // se crea un token y se crea un seccion, seccion que se usa para proteger rutas
+    ...authConfig,
+    session: { strategy: "jwt" },
 
-    // esto es para roles, si no quieres manejar la seccion por roles puede eliminar esto
     callbacks: {
-        //JWT se crea cada ves que crea o actulizaun tokn JWT
-        // aqui es donde puedes agregar informacion adicional al tokens
+        // Se ejecuta cada vez que se crea/actualiza el token JWT
         jwt({ token, user }) {
-            if (user) { // User is available during sign-in
+            if (user) {
+                // Guardamos el rol del usuario
+                // @ts-ignore
                 token.role = user.role;
+                // Guardamos también el id del usuario
+                // @ts-ignore
+                token.id = user.id;
+                // Guardamos el username del usuario
+                // @ts-ignore
+                token.username = user.username;
             }
-            return token
+            return token;
         },
         session({ session, token }) {
             if (session.user) {
-                session.user.role = token.role
+                // Pasamos el rol a la sesión
+                // @ts-ignore
+                session.user.role = token.role;
+                // Pasamos también el id a la sesión
+                // @ts-ignore
+                session.user.id = token.id;
+                // Pasamos el username a la sesión
+                // @ts-ignore
+                session.user.username = token.username;
             }
-            return session
+            return session;
         },
     },
-})
+});

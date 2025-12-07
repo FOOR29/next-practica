@@ -34,3 +34,35 @@ export const RegisterInSchema = z.object({
         .string()
         .max(20, "name must be less than 20 characters")
 });
+
+
+// Validación para crear/editar productos
+export const ProductSchema = z.object({
+    name: z
+        .string()
+        .min(1, "Product name is required")
+        .max(100, "Product name must be less than 100 characters"),
+
+    inStock: z.boolean(), // checkbox true/false
+
+    quantity: z
+        .number()
+        .int("Quantity must be an integer")
+        .min(0, "Quantity cannot be negative"),
+
+    price: z
+        .number()
+        .min(0, "Price cannot be negative"),
+
+    description: z
+        .string()
+        .max(300, "Description must be less than 300 characters")
+        .optional()
+        .or(z.literal("")), // permitimos string vacío
+
+    imageUrl: z
+        .string()
+        .url("Invalid URL")
+        .optional()
+        .or(z.literal("")), // permitimos vacío si no quiere imagen todavía
+});

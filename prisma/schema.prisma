@@ -27,6 +27,27 @@ model User {
   image    String?
   role     Role    @default(user)
 
+  // Relación: un usuario (admin) puede tener muchos productos
+  products Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Nuevo modelo Product
+model Product {
+  id          String  @id @default(cuid()) // id único del producto
+  name        String // nombre del producto
+  inStock     Boolean @default(true) // si está en stock
+  quantity    Int     @default(0) // cantidad disponible
+  price       Decimal @db.Decimal(10, 2) // precio (decimal para dinero)
+  description String? // pequeña descripción
+  imageUrl    String? @db.VarChar(500) // URL de la imagen
+
+  // Relación con User (admin dueño del producto)
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
