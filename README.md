@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Proyecto de next crud + autheticacion con jwt
 
-## Getting Started
+### dependencias necesarias para futuros proyectos:
 
-First, run the development server:
+nexth auth la beta
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install next-auth@beta
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+zod para validaciones
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install zod
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+hook form + resolves para crear los formularios
 
-## Learn More
+```bash
+npm i @hookform/resolvers
+```
 
-To learn more about Next.js, take a look at the following resources:
+byscrip para hashear las contraseñas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm i bcryptjs
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+prisma y prisma client en su version 5 mas estable
 
-## Deploy on Vercel
+```bash
+npm install @prisma/client@5.16.1
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+npm install prisma@5.16.1 --save-dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+depues de instalar primsa se inicializa com:
+
+```bash
+npx prisma init --datasource-provider mysql
+```
+
+y una ves editado el schema se genera
+
+```bash
+npx prisma generate
+```
+
+y se envia todo a la base de datos con:
+
+```bash
+npx prisma db push
+```
+
+> no olvidarse del comando:
+
+```bash
+npx auth secret
+```
+para generat el .env
+
+---
+
+## paso 2
+
+ya a partir de aqui la solo es copiar y pegar cada componnete y adaptarlo a lo que se necesita
+
+
+
