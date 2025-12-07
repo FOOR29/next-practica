@@ -30,4 +30,7 @@ export const RegisterInSchema = z.object({
         .string()
         .min(1, "Name is requerid")
         .max(20, "name must be less than 20 characters"),
+    username: z  //este ese opcional
+        .string()
+        .max(20, "name must be less than 20 characters")
 });

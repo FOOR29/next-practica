@@ -1,3 +1,4 @@
+import RegisterForm from "@/src/components/forms/RegisterForm"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 const Reister = () => {
     return (
         <div>
-            <h1 className="text-4xl font-bold">Register</h1>
+            <RegisterForm />
         </div>
     )
 }
